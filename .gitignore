@@ -1,2 +1,8 @@
 #Project Environment files
 env.py
+
+#Pycharm setting directory
+.idea/
+
+#Python cache directory
+__pycache__
