@@ -1,6 +1,8 @@
 import urllib.request
 import urllib.parse
 import xml.dom.minidom
+import json
+import xmltodict
 from env import *
 
 
@@ -12,3 +14,4 @@ def getMetroInfo(subwayStationId, dailyTypeCode, upDownTypeCode):
     PRETTY_METRO_INFO_DOM = METRO_INFO_DOM.toprettyxml()
     print(PRETTY_METRO_INFO_DOM)
     return PRETTY_METRO_INFO_DOM
+
