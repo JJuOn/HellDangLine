@@ -56,6 +56,12 @@ def getMetroIds():
             elif line[0] == '1009':
                 writeLine9 = csv.writer(line9)
                 writeLine9.writerow(line)
+            elif line[0] == '1063':
+                writeLineGyeonguiJoungang = csv.writer(lineGyeonguiJoungang)
+                writeLineGyeonguiJoungang.writerow(line)
+            elif line[0] == '1065':
+                writeLineAirport = csv.writer(lineAirport)
+                writeLineAirport.writerow(line)
             elif line[0] == '1067':
                 writeLineGyeongChun = csv.writer(lineGyeongChun)
                 writeLineGyeongChun.writerow(line)
@@ -65,15 +71,10 @@ def getMetroIds():
             elif line[0] == '1075':
                 writeLineBundang = csv.writer(lineBundang)
                 writeLineBundang.writerow(line)
-            elif line[0] == '1063':
-                writeLineGyeonguiJoungang = csv.writer(lineGyeonguiJoungang)
-                writeLineGyeonguiJoungang.writerow(line)
             elif line[0] == '1077':
                 writeLineSinBundang = csv.writer(lineSinBundang)
                 writeLineSinBundang.writerow(line)
-            elif line[0] == '1065':
-                writeLineAirport = csv.writer(lineAirport)
-                writeLineAirport.writerow(line)
+
 
         i += 1
     file.close()
