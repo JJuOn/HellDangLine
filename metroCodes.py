@@ -3,7 +3,7 @@ import csv
 
 def addMetroCodes():
     lineNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'G', 'I', 'K', 'S']
-    file = open('../서울시 역코드로 지하철역 정보 검색.csv', 'r', encoding='utf-8')
+    file = open('data/raw/서울시 역코드로 지하철역 정보 검색.csv', 'r', encoding='utf-8')
     metroCodes = []
     lines = csv.reader(file)
     i = 0
@@ -29,6 +29,7 @@ def addMetroCodes():
         csvWriter = csv.writer(fileWrite)
         for i in range(0, len(original)):
             if len(original[i]) != 3:
+                csvWriter.writerow(original[i])
                 continue
             idx = -1
             for j in range(0, len(metroCodes)):

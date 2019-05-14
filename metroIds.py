@@ -2,7 +2,7 @@ import csv
 
 
 def getMetroIds():
-    file = open('../실시간도착_역정보.csv', 'r', encoding='utf-8')
+    file = open('data/raw/실시간도착_역정보.csv', 'r', encoding='utf-8')
     lines = csv.reader(file)
     line1 = open('data/metroId/line1.csv', 'w', encoding='euc-kr', newline='')
     line2 = open('data/metroId/line2.csv', 'w', encoding='euc-kr', newline='')
