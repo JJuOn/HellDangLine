@@ -33,6 +33,10 @@ def getMetroTimetable(lineName):
                 EXPRESS_YNs = []
                 print(dictTimetable)
                 if not 'SearchSTNTimeTableByIDService' in dictTimetable:
+                    output = open('data/timetable/errorList.csv', 'a', encoding='euc-kr', newline='')
+                    outputWriter = csv.writer(output)
+                    outputWriter.writerow([line[0], line[3], week, inout])
+                    output.close()
                     continue
                 for row in dictTimetable['SearchSTNTimeTableByIDService']['row']:
                     TRAIN_NOs.append(row['TRAIN_NO'])
