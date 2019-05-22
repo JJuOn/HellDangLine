@@ -96,7 +96,7 @@ def getMetroLocation():
                     csvWriter.writerow([statnIds[i], trainNos[i], statnTids[i], recptnDts[i], weekday, updnLines[i]])
                     print([statnIds[i], trainNos[i], statnTids[i], recptnDts[i], weekday, updnLines[i]])
                 file.close()
-                sleep(10)
+            sleep(10)
 
 
 getMetroLocation()
