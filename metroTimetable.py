@@ -30,6 +30,7 @@ def getMetroTimetable(lineName):
                 ORIGINSTATIONs = []
                 DESTSTATIONs = []
                 ARRIVETIMEs = []
+                LEFTTIMEs = []
                 EXPRESS_YNs = []
                 print(dictTimetable)
                 if not 'SearchSTNTimeTableByIDService' in dictTimetable:
@@ -43,12 +44,13 @@ def getMetroTimetable(lineName):
                     ORIGINSTATIONs.append(row['ORIGINSTATION'])
                     DESTSTATIONs.append(row['DESTSTATION'])
                     ARRIVETIMEs.append(row['ARRIVETIME'])
+                    LEFTTIMEs.append(row['LEFTTIME'])
                     EXPRESS_YNs.append(row['EXPRESS_YN'])
                 output = open('data/timetable/' + line[0] + '_' + line[3] + '_' + week + '_' + inout + '.csv', 'w', encoding='euc-kr', newline='')
                 outputWriter = csv.writer(output)
-                outputWriter.writerow(['TRAIN_NO', 'ORIGINSTATION', 'DESTSTATION', 'ARRIVETIME', 'EXPRESS_YN'])
+                outputWriter.writerow(['TRAIN_NO', 'ORIGINSTATION', 'DESTSTATION', 'ARRIVETIME', 'LEFTTIME', 'EXPRESS_YN'])
                 for i in range(0, len(TRAIN_NOs)):
-                    outputWriter.writerow([TRAIN_NOs[i], ORIGINSTATIONs[i], DESTSTATIONs[i], ARRIVETIMEs[i], EXPRESS_YNs[i]])
+                    outputWriter.writerow([TRAIN_NOs[i], ORIGINSTATIONs[i], DESTSTATIONs[i], ARRIVETIMEs[i], LEFTTIMEs[i], EXPRESS_YNs[i]])
                 output.close()
     input.close()
 
