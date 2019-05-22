@@ -1,8 +1,10 @@
 import urllib.request
 import urllib.parse
+import urllib.error
 import json
 import csv
 import datetime
+import os
 from time import sleep
 from env import *
 
@@ -62,7 +64,8 @@ def getMetroLocation():
                 subwayNameQuoted = urllib.parse.quote_plus(subwayName)
                 url = "http://swopenapi.seoul.go.kr/api/subway/" + METRO_LOCATION_APIKEY + "/json/realtimePosition/0/100/" + subwayNameQuoted
                 now = datetime.datetime.now()
-                dateToString = now.strftime("%Y%m%d_%H%M%S")
+                date = now.strftime("%Y%m%d")
+                time = now.strftime("%H%M%S")
                 weekday = now.weekday()
                 if now.hour >= 0 or now.hour <= 2:
                     weekday = weekday-1
@@ -72,7 +75,11 @@ def getMetroLocation():
                     weekday = 2
                 else:
                     weekday = 3
-                response = urllib.request.urlopen(url)
+                try:
+                    response = urllib.request.urlopen(url)
+                except urllib.error.HTTPError:
+                    print("Response error!")
+                    continue
                 dictResult = json.load(response)
                 if not 'realtimePositionList' in dictResult:
                     continue
@@ -89,7 +96,9 @@ def getMetroLocation():
                     trainNos.append(row['trainNo'])
                     updnLines.append(int(row['updnLine'])+1)
                     recptnDts.append(row['recptnDt'][11:])
-                file = open('data/location/' + dateToString + '_' + subwayId + '.csv', 'w', encoding='euc-kr', newline='')
+                if not os.path.exists('data/location/'+date):
+                    os.mkdir('data/location/' + date)
+                file = open('data/location/' + date + '/' + time + '_' + subwayId + '.csv', 'w', encoding='euc-kr', newline='')
                 csvWriter = csv.writer(file)
                 csvWriter.writerow(['STATNID', 'TRAIN_NO', 'STATNTID', 'RECPTNDT', 'WEEKDAY', 'UPDNLINE'])
                 for i in range(0, len(statnIds)):
