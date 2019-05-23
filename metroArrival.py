@@ -5,13 +5,12 @@ import datetime
 import os
 from time import sleep
 
-
 def getMetroArrival():
     lineNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Suin', 'Bundang', 'SinBundang', 'GyeonguiJoungang', 'Airport', 'GyeongChun']
     idTable = []
     for lineName in lineNames:
         stationIds = []
-        file = open('data/metroId/line' + lineName + '.csv', 'r')
+        file = open('data/metroId/line' + lineName + '.csv', 'r',encoding='euc-kr')
         csvReader = csv.reader(file)
         for line in csvReader:
             subwayNum = line[0]
