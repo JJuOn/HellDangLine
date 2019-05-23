@@ -77,10 +77,12 @@ def getMetroLocation():
                     weekday = 3
                 try:
                     response = urllib.request.urlopen(url)
+                    body = response.read().decode('utf-8')
+                    print(body)
                 except urllib.error.HTTPError:
                     print("Response error!")
                     continue
-                dictResult = json.load(response)
+                dictResult = json.load(str(body))
                 if not 'realtimePositionList' in dictResult:
                     continue
                 statnIds = []
