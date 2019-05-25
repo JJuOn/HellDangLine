@@ -28,9 +28,9 @@ def getMetroArrival():
                     date = now.strftime("%Y%m%d")
                     time = now.strftime("%H%M%S")
                     weekday = now.weekday()
-                    if now.hour >= 0 or now.hour <= 2:
+                    if now.hour >= 0 and now.hour <= 2:
                         weekday = weekday - 1
-                    if weekday >= 0 or weekday <= 4:
+                    if weekday >= 0 and weekday <= 4:
                         weekday = 1
                     elif weekday == 5:
                         weekday = 2
