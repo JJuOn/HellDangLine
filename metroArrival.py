@@ -5,6 +5,7 @@ import datetime
 import os
 from time import sleep
 
+
 def getMetroArrival():
     lineNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Suin', 'Bundang', 'SinBundang', 'GyeonguiJoungang', 'Airport', 'GyeongChun']
     idTable = []
@@ -26,10 +27,11 @@ def getMetroArrival():
                     stationId = stationIds['stationId']
                     now = datetime.datetime.now()
                     date = now.strftime("%Y%m%d")
-                    time = now.strftime("%H%M%S")
                     weekday = now.weekday()
                     if now.hour >= 0 and now.hour <= 2:
                         weekday = weekday - 1
+                    if weekday == -1:
+                        weekday = 6
                     if weekday >= 0 and weekday <= 4:
                         weekday = 1
                     elif weekday == 5:
