@@ -4,7 +4,7 @@ import csv
 
 def getTimeSum():
     # dates = os.listdir('data/location')
-    dates = ['20190523', '20190524', '20190525', '20190526', '20190527']
+    dates = ['20190528']
     for date in dates:
         locationFiles = os.listdir('data/location/'+date)
         for locationFile in locationFiles:
