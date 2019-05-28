@@ -3,14 +3,14 @@ import csv
 
 
 def getTimeSum():
-    dates = os.listdir('data/location')
+    # dates = os.listdir('data/location')
+    dates = ['20190523', '20190524', '20190525', '20190526', '20190527']
     for date in dates:
         locationFiles = os.listdir('data/location/'+date)
         for locationFile in locationFiles:
             file1 = open('data/location/'+date+'/'+locationFile, 'r')
             lines1 = csv.reader(file1)
             subwayId = locationFile[:-4]
-            print(subwayId)
             for line1 in lines1:
                 stationId = line1[0]
                 trainNo = line1[1]
@@ -18,26 +18,31 @@ def getTimeSum():
                 arrivalTime = line1[3]
                 weekday = line1[4]
                 updown = line1[5]
+                print('date : {}, subwayId : {}, stationId : {}'.format(date, subwayId, stationId))
                 if os.path.exists('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown)):
                     file2 = open('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown), 'r')
                     lines2 = csv.reader(file2)
+                    temp = []
+                    for line2 in lines2:
+                        temp.append(line2)
                     file2.close()
                     file3 = open('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown), 'w', encoding='euc-kr', newline='')
                     csvWriter = csv.writer(file3)
                     found = False
-                    for line2 in lines2:
-                        if line2[0] == trainNo and line2[1] == destination:
+                    for row in temp:
+                        if (row[0] == trainNo) and (row[1] == destination):
                             found = True
-                            line2[2] = int(line2[2]) + timeToSecond(arrivalTime)
-                            line2[3] = int(line2[3]) + 1
-                        csvWriter.writerow(line2)
+                            row[2] = int(row[2]) + timeToSecond(arrivalTime)
+                            row[3] = int(row[3]) + 1
+                        csvWriter.writerow(row)
                     if not found:
-                        csvWriter.writerow([trainNo, destination, arrivalTime, 1])
+                        csvWriter.writerow([trainNo, destination, timeToSecond(arrivalTime), 1])
                     file3.close()
                 else:
+                    print('doesn\'t exists')
                     file2 = open('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown), 'w', encoding='euc-kr', newline='')
                     csvWriter = csv.writer(file2)
-                    csvWriter.writerow([trainNo, destination, arrivalTime, 1])
+                    csvWriter.writerow([trainNo, destination, timeToSecond(arrivalTime), 1])
                     file2.close()
 
 
