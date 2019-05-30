@@ -7,7 +7,7 @@ from time import sleep
 
 
 def getMetroArrival():
-    lineNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Suin', 'Bundang', 'SinBundang', 'GyeonguiJoungang', 'Airport', 'GyeongChun']
+    lineNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'Suin', 'Bundang', 'GyeonguiJoungang', 'Airport', 'GyeongChun']
     idTable = []
     for lineName in lineNames:
         stationIds = []
@@ -56,10 +56,16 @@ def getMetroArrival():
                         updownCode = ''
                         if resultRow['trainSttus'] != '1':
                             continue
-                        if resultRow['updnLine'] == '상행' or resultRow['updnLine'] == '내선':
-                            updownCode = '1'
+                        if subwayNum in ['1001', '1002', '1003', '1004', '1005', '1006', '1007', '1008', '1063', '1067', '1071', '1075']:
+                            if resultRow['updnLine'] == '하행' or resultRow['updnLine'] == '내선':
+                                updownCode = '1'
+                            else:
+                                updownCode = '2'
                         else:
-                            updownCode = '2'
+                            if resultRow['updnLine'] == '상행' or resultRow['updnLine'] == '내선':
+                                updownCode = '1'
+                            else:
+                                updownCode = '2'
                         arrivedTime = resultRow['arvlDt'][11:19]
                         trainNo = resultRow['trainNo']
                         destination = resultRow['trainLineNm']
