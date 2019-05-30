@@ -45,9 +45,8 @@ def getDifference():
                         for timeAverageRow in timeAverageList:
                             if timeAverageRow[0] == trainNoInTimetable:
                                 if arrivaltimeInTimetable != 0:
-                                    print('found')
                                     difference = abs(arrivaltimeInTimetable - int(timeAverageRow[2]))
-                                    result.append([station[2], timeAverageRow[1], difference])
+                                    result.append([station[2], timeAverageRow[1], difference, secondToTime(arrivaltimeInTimetable)])
                     if not os.path.exists('data/result'):
                         os.mkdir('data/result')
                     resultFile = open('data/result/{}_{}_{}_{}.csv'.format(subwayIds[i], station[2], weekday, updown), 'w', encoding='euc-kr', newline='')
@@ -55,9 +54,6 @@ def getDifference():
                     for row in result:
                         csvWriter.writerow(row)
                     resultFile.close()
-
-
-
 
 
 def secondToTime(timesum):
@@ -69,7 +65,6 @@ def secondToTime(timesum):
 
 
 def timeToSecond(time):
-    print(time)
     timeList = time.split(':')
     if timeList[0] == '0':
         timeList[0] = '24'
@@ -86,6 +81,7 @@ def delAlphabetInTrainNo(string):
     for i in range(0, len(trainNoStr)):
         if trainNoStr[i] in string:
             return string.replace(trainNoStr[i], '')
+    return string
 
 
 getDifference()
