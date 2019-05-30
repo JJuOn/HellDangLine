@@ -48,6 +48,10 @@ def getTimeSum():
 
 def timeToSecond(time):
     timeList = time.split(':')
+    if timeList[0] == '0':
+        timeList[0] = '24'
+    elif timeList[0] == '1':
+        timeList[0] = '25'
     return int(timeList[0])*3600+int(timeList[1])*60+int(timeList[2])
 
 
