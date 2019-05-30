@@ -11,6 +11,8 @@ def getTimeSum():
             file1 = open('data/location/'+date+'/'+locationFile, 'r')
             lines1 = csv.reader(file1)
             subwayId = locationFile[:-4]
+            if subwayId == '1077':
+                continue
             for line1 in lines1:
                 stationId = line1[0]
                 trainNo = line1[1]
