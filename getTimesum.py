@@ -3,9 +3,10 @@ import csv
 
 
 def getTimeSum():
-    # dates = os.listdir('data/location')
-    dates = ['20190528']
+    dates = os.listdir('data/location')
     for date in dates:
+        if date == '20190530':
+            continue
         locationFiles = os.listdir('data/location/'+date)
         for locationFile in locationFiles:
             file1 = open('data/location/'+date+'/'+locationFile, 'r')
@@ -20,6 +21,8 @@ def getTimeSum():
                 arrivalTime = line1[3]
                 weekday = line1[4]
                 updown = line1[5]
+                if not os.path.exists('data/timesum'):
+                    os.mkdir('data/timesum')
                 print('date : {}, subwayId : {}, stationId : {}'.format(date, subwayId, stationId))
                 if os.path.exists('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown)):
                     file2 = open('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown), 'r')
