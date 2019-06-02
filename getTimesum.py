@@ -5,7 +5,7 @@ import csv
 def getTimeSum():
     # dates = os.listdir('data/location')
     # for date in dates:
-        date = '20190531'
+        date = '20190601'
         # if date == '20190530':
             # continue
         locationFiles = os.listdir('data/location/'+date)
