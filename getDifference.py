@@ -43,7 +43,7 @@ def getDifference():
                         arrivaltimeInTimetable = timeToSecond(timetableRow[3])
                         lefttimeInTimetable = timeToSecond(timetableRow[4])
                         for timeAverageRow in timeAverageList:
-                            if timeAverageRow[0] == trainNoInTimetable:
+                            if delAlphabetInTrainNo(timeAverageRow[0]) == trainNoInTimetable:
                                 if arrivaltimeInTimetable != 0:
                                     difference = abs(arrivaltimeInTimetable - int(timeAverageRow[2]))
                                     result.append([station[2], timeAverageRow[1], difference, secondToTime(arrivaltimeInTimetable)])
@@ -85,4 +85,3 @@ def delAlphabetInTrainNo(string):
 
 
 getDifference()
-
