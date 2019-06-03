@@ -1,17 +1,22 @@
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 import csv
 import os
 
 
 def getGraph():
+    font_name = fm.FontProperties(fname='C:/Windows/Fonts/malgun.ttf').get_name()
+    mpl.rc('font', family=font_name)
+    mpl.rcParams.update({'figure.autolayout': True})
     subwayDifference = []
     fileNameList = os.listdir('data/result')
     for fileName in fileNameList:
+        print('collecting : {}'.format(fileName))
         split = fileName.split('_')
         subwayId = split[0]
         stationName = split[1]
         weekday = split[2]
-        updown = split[3][:-4]
         inputFile = open('data/result/'+fileName, 'r')
         lines = csv.reader(inputFile)
         count = 0
@@ -33,11 +38,47 @@ def getGraph():
             for row in subwayDifference:
                 if row['subwayId'] == subwayId:
                     row['stations'].append({'stationName': stationName, 'weekday': weekday, 'difference': sum, 'count': count})
-    for row in subwayDifference:
-        for station in row['stations']:
-            if station['count'] != 0:
-                station['difference'] = station['difference'] // station['count']
-    print(subwayDifference)
+    if not os.path.exists('data/img'):
+        os.mkdir('data/img')
+    for wd in ['1', '2', '3']:
+        x1 = []
+        y1 = []
+        for row in subwayDifference:
+            print('calculating : {}_{}'.format(row['subwayId'], wd))
+            x2 = []
+            y2 = []
+            subwaySum = 0
+            subwayCount = 0
+            for station in row['stations']:
+                subwaySum += station['difference']
+                subwayCount += station['count']
+            subwayAverage = subwaySum // subwayCount
+            row['subwayDifference'] = subwayAverage
+            row['subwayCount'] = subwayCount
+            for station in row['stations']:
+                if station['weekday'] == wd and station['count'] != 0:
+                    station['difference'] = station['difference'] // station['count']
+                    x2.append(station['stationName'])
+                    y2.append(station['difference'])
+            print('Drawing : {}_{}'.format(row['subwayId'], wd))
+            plt.figure(figsize=(16, 9))
+            plt.bar(x2, y2)
+            plt.xlabel('지하철 역명')
+            plt.ylabel('평균 지연 시간')
+            plt.title('{}_{}'.format(row['subwayId'], wd))
+            plt.xticks(rotation=90)
+            plt.savefig('data/img/{}_{}.png'.format(row['subwayId'], wd), dpi=500)
+            plt.close()
+            x1.append(row['subwayId'])
+            y1.append(row['subwayDifference'])
+        plt.figure(figsize=(16, 9))
+        plt.bar(x1, y1)
+        plt.xlabel('지하철 노선 코드')
+        plt.ylabel('평균 지연 시간')
+        plt.title('전체노선_{}'.format(wd))
+        plt.xticks(rotation=90)
+        plt.savefig('data/img/all_{}.png'.format(wd), dpi=500)
+        plt.close()
 
 
 def isSubwayIdExists(dictList, subwayId):
@@ -45,5 +86,6 @@ def isSubwayIdExists(dictList, subwayId):
         if row['subwayId'] == subwayId:
             return True
     return False
+
 
 getGraph()
