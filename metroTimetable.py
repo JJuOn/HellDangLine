@@ -103,5 +103,5 @@ def getTimeTableFromErrorList():
         output.close()
 
 
-# getMetroTimetable(lineName)
+# getMetroTimetable()
 getTimeTableFromErrorList()

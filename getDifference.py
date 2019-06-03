@@ -44,7 +44,7 @@ def getDifference():
                             if delAlphabetInTrainNo(timeAverageRow[0]) == trainNoInTimetable:
                                 if arrivaltimeInTimetable != 0:
                                     difference = abs(arrivaltimeInTimetable - int(timeAverageRow[2]))
-                                    result.append([station[2], timeAverageRow[1], difference, secondToTime(arrivaltimeInTimetable)])
+                                    result.append([station[2], timeAverageRow[1], difference, secondToTime(arrivaltimeInTimetable), secondToTime(timeAverageRow[2])])
                     if not os.path.exists('data/result'):
                         os.mkdir('data/result')
                     resultFile = open('data/result/{}_{}_{}_{}.csv'.format(subwayIds[i], station[2], weekday, updown), 'w', encoding='euc-kr', newline='')
