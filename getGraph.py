@@ -79,6 +79,16 @@ def getGraph():
         plt.xticks(rotation=90)
         plt.savefig('data/img/all_{}.png'.format(wd), dpi=500)
         plt.close()
+        del x1[9]
+        del y1[9]
+        plt.figure(figsize=(16, 9))
+        plt.bar(x1, y1)
+        plt.xlabel('지하철 노선 코드')
+        plt.ylabel('평균 지연 시간')
+        plt.title('전체노선_{}'.format(wd))
+        plt.xticks(rotation=90)
+        plt.savefig('data/img/except_1063_{}.png'.format(wd), dpi=500)
+        plt.close()
 
 
 def isSubwayIdExists(dictList, subwayId):
