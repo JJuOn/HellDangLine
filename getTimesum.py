@@ -4,15 +4,13 @@ import csv
 
 def getTimeSum():
     # dates = os.listdir('data/location')
-    dates = ['20190601', '20190602']
+    dates = ['20190603', '20190604']
     for date in dates:
         locationFiles = os.listdir('data/location/'+date)
         for locationFile in locationFiles:
             file1 = open('data/location/'+date+'/'+locationFile, 'r')
             lines1 = csv.reader(file1)
             subwayId = locationFile[:-4]
-            if subwayId == '1077':
-                continue
             for line1 in lines1:
                 stationId = line1[0]
                 trainNo = line1[1]
@@ -60,7 +58,5 @@ def timeToSecond(time):
 
 
 getTimeSum()
-
-
 
 
