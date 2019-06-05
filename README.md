@@ -28,6 +28,9 @@
 - getTimeaverage.py : getTimesum.py를 통해 획득한 지하철 도착시간의 평균 계산
 - getDifference.py : getTimeaverage.py를 통해 획득한 지하철 도착시간의 평균값과 지하철 시간표간의 오차 계산
 - getGraph.py : getDifference.py를 통해 획득한 오차를 지하철 역별로, 지하철 노선별로 계산(평일, 토요일, 일요일 구분) 후 그래프 이미지 저장
+- fixUpdownCode.py : 시간표상의 상/하행과 서울시 대중교통 API상의 상/하행이 서로 일치하지 않는 경우가 있어, 이미 수집된 데이터에 대해서 상/하행 코드 변경
+- editSeongsu.py : 유일하게 2호선 성수역에서 열차 번호가 중복되는 현상 발생, 실제 데이터는 성수역을 기점으로 하는 경우만 수집하기 때문에, 성수역의 시간표를 변경
+- deleteDuplicated.py : 데이터 수집시 열차의 위치와 상태가 변하지 않아 데이터의 중복발생, 이를 해결하기 위해 중복된 데이터를 제거하는 
 
 # data
 ## data/raw
