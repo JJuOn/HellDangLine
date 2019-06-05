@@ -3,7 +3,7 @@ import csv
 
 
 def deleteDuplicated():
-    targetDate = '20190604'
+    targetDate = '20190605'
     fileNameList = os.listdir('data/location/{}'.format(targetDate))
     for fileName in fileNameList:
         print(fileName)
