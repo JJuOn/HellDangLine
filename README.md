@@ -26,7 +26,8 @@
 - metroArrival.py : 서울시 대중교통 API를 바탕으로 지하철 역별 도착정보 획득
 - getTimesum.py : 획득한 지하철 도착정보를 바탕으로 지하철 노선별, 역별, 열차번호별로 도착시간의 합 계산
 - getTimeaverage.py : getTimesum.py를 통해 획득한 지하철 도착시간의 평균 계산
-- getDifference.py : getTimeaverage.py를 통해 획득힌 지하철 도착시간의 평균값과 지하철 시간표간의 오차 계산
+- getDifference.py : getTimeaverage.py를 통해 획득한 지하철 도착시간의 평균값과 지하철 시간표간의 오차 계산
+- getGraph.py : getDifference.py를 통해 획득한 오차를 지하철 역별로, 지하철 노선별로 계산(평일, 토요일, 일요일 구분) 후 그래프 이미지 저장
 
 # data
 ## data/raw
@@ -54,3 +55,8 @@
 ## data/result
 - (지하철 노선 코드)\_(역명)\_(요일)\_(상/하행).csv
 - 역명, 종착역, 오차(초), 시간표상의 도착시간
+
+## data/img
+- (지하철 노선 코드)\_(요일).png : 해당 노선의 역별 해당 요일의 평균 오차 비교
+- all\_(요일).png : 전체 노선의 평균 오차 비교
+- except\_1063\_(요일).png : 경의중앙선의 오차가 월등히 높아, 다른 노선과의 비교가 힘드니, 경의중앙선을 제외한 다른 노선의 평균 오차 
