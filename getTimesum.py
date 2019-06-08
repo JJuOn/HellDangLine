@@ -20,7 +20,7 @@ def getTimeSum():
                 updown = line1[5]
                 if not os.path.exists('data/timesum'):
                     os.mkdir('data/timesum')
-                print('date : {}, subwayId : {}, stationId : {}'.format(date, subwayId, stationId))
+                # print('date : {}, subwayId : {}, stationId : {}'.format(date, subwayId, stationId))
                 if os.path.exists('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown)):
                     file2 = open('data/timesum/{}_{}_{}_{}.csv'.format(subwayId, stationId, weekday, updown), 'r')
                     lines2 = csv.reader(file2)

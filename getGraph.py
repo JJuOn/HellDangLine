@@ -12,7 +12,6 @@ def getGraph():
     subwayDifference = []
     fileNameList = os.listdir('data/result')
     for fileName in fileNameList:
-        print('collecting : {}'.format(fileName))
         split = fileName.split('_')
         subwayId = split[0]
         stationName = split[1]
@@ -44,7 +43,6 @@ def getGraph():
         x1 = []
         y1 = []
         for row in subwayDifference:
-            print('calculating : {}_{}'.format(row['subwayId'], wd))
             x2 = []
             y2 = []
             subwaySum = 0
@@ -71,6 +69,7 @@ def getGraph():
             plt.close()
             x1.append(row['subwayId'])
             y1.append(row['subwayDifference'])
+        print('Drawing : all_{}'.format(wd))
         plt.figure(figsize=(16, 9))
         plt.bar(x1, y1)
         plt.xlabel('지하철 노선 코드')
@@ -81,6 +80,7 @@ def getGraph():
         plt.close()
         del x1[9]
         del y1[9]
+        print('Drawing : except_1063_{}'.format(wd))
         plt.figure(figsize=(16, 9))
         plt.bar(x1, y1)
         plt.xlabel('지하철 노선 코드')
