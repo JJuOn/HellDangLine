@@ -4,10 +4,11 @@ import csv
 
 def getTimeSum():
     # dates = os.listdir('data/location')
-    dates = ['20190607']
+    dates = ['20190608', '20190609']
     for date in dates:
         locationFiles = os.listdir('data/location/'+date)
         for locationFile in locationFiles:
+            print(locationFile)
             file1 = open('data/location/'+date+'/'+locationFile, 'r')
             lines1 = csv.reader(file1)
             subwayId = locationFile[:-4]
