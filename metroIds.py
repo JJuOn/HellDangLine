@@ -1,33 +1,46 @@
+# metroIds.py
 import csv
 
 
 def getMetroIds():
+    # 지하철 노선 코드, 지하철 역명, 지하철역 ID가 저장되어있는 원본파일 열기
     file = open('data/raw/실시간도착_역정보.csv', 'r', encoding='utf-8')
     lines = csv.reader(file)
+    # 지하철 노선별로 정보를 분리하여 저장할 파일 열기
+    # 1호선
     line1 = open('data/metroId/line1.csv', 'w', encoding='euc-kr', newline='')
+    # 2호선
     line2 = open('data/metroId/line2.csv', 'w', encoding='euc-kr', newline='')
+    # 3호선
     line3 = open('data/metroId/line3.csv', 'w', encoding='euc-kr', newline='')
+    # 4호선
     line4 = open('data/metroId/line4.csv', 'w', encoding='euc-kr', newline='')
+    # 5호선
     line5 = open('data/metroId/line5.csv', 'w', encoding='euc-kr', newline='')
+    # 6호선
     line6 = open('data/metroId/line6.csv', 'w', encoding='euc-kr', newline='')
+    # 7호선
     line7 = open('data/metroId/line7.csv', 'w', encoding='euc-kr', newline='')
+    # 8호선
     line8 = open('data/metroId/line8.csv', 'w', encoding='euc-kr', newline='')
+    # 9호선
     line9 = open('data/metroId/line9.csv', 'w', encoding='euc-kr', newline='')
-    # lineInc1 = open('data/metroId/lineInc1.csv', 'w', encoding='euc-kr', newline='')
-    # lineInc2 = open('data/metroId/lineInc2.csv', 'w', encoding='euc-kr', newline='')
+    # 분당선
     lineBundang = open('data/metroId/lineBundang.csv', 'w', encoding='euc-kr', newline='')
+    # 신분당선
     lineSinBundang = open('data/metroId/lineSinBundang.csv', 'w', encoding='euc-kr', newline='')
+    # 경의중앙선
     lineGyeonguiJoungang = open('data/metroId/lineGyeonguiJoungang.csv', 'w', encoding='euc-kr', newline='')
+    # 공항철도
     lineAirport = open('data/metroId/lineAirport.csv', 'w', encoding='euc-kr', newline='')
+    # 경춘선
     lineGyeongChun = open('data/metroId/lineGyeongChun.csv', 'w', encoding='euc-kr', newline='')
+    # 수인선
     lineSuin = open('data/metroId/lineSuin.csv', 'w', encoding='euc-kr', newline='')
-    # lineUijeongbu = open('data/metroId/lineUijeongbu.csv', 'w', encoding='euc-kr', newline='')
-    # lineEver = open('data/metroId/lineEver.csv', 'w', encoding='euc-kr', newline='')
-    # lineGyeonggang = open('data/metroId/lineGyeonggang.csv', 'w', encoding='euc-kr', newline='')
-    # lineWooeSinseul = open('data/metroId/lineWooeSinseul.csv', 'w', encoding='euc-kr', newline='')
-    # lineSeohae = open('data/metroId/lineSeohae.csv', 'w', encoding='euc-kr', newline='')
+    # 첫행은 제외
     i = 0
     for line in lines:
+        # 첫행은 제외하고, 해당 노선별로 파일을 써 나간다
         if i != 0:
             if line[0] == '1001':
                 writeLine1 = csv.writer(line1)
@@ -74,6 +87,7 @@ def getMetroIds():
             elif line[0] == '1077':
                 writeLineSinBundang = csv.writer(lineSinBundang)
                 writeLineSinBundang.writerow(line)
+        # 첫행을 건너 뛴 후에는, 다시는 스킵하지 않도록 한다.
         else:
             i += 1
     file.close()
